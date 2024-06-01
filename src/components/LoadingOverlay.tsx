@@ -61,17 +61,16 @@ export default function LoadingOverlay({
     };
   }, []);
 
+  // need three divs to ensure rerender does not reset forwarded css styles
   return (
     <>
       {status !== "ready" && (
-        <div
-          className={`${styles.overlay} ${
-            status === "hiding" ? styles.hide : ""
-          }`}
-        >
-          <div className={styles.overlayContent}>
-            {/* can put any content in here and it will center in overlay during loading */}
-            {children}
+        <div className={status === "hiding" ? styles.hide : ""}>
+          <div className={styles.overlay}>
+            <div className={styles.overlayContent}>
+              {/* can put any content in here and it will center in overlay during loading */}
+              {children}
+            </div>
           </div>
         </div>
       )}
